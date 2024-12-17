@@ -1,0 +1,13 @@
+@font-face {
+  font-family: 'Ppneuemontreal';
+  src: url('../fonts/PPNeueMontreal-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  margin: 0;
+  font-family: Ppneuemontreal, Arial, sans-serif;
+  background: #f9f9f9;
+}
