@@ -1,7 +1,3 @@
-<script>
-export default {}
-</script>
-
 <template>
   <div class="footer-section">
     <div class="page-padding">
@@ -51,7 +47,48 @@ export default {}
   </div>
 </template>
 
-<style lang="scss" scoped>
+<script>
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+export default {
+  mounted() {
+    // Register ScrollTrigger plugin
+    gsap.registerPlugin(ScrollTrigger)
+
+    // Set initial position of footer
+    gsap.set('.footer-section', { yPercent: -50 })
+
+    // Timeline for uncover animation
+    const uncover = gsap.timeline({ paused: true })
+
+    uncover.to('.footer-section', { yPercent: 0, ease: 'none' })
+
+    // ScrollTrigger for uncover animation
+    ScrollTrigger.create({
+      trigger: '.scroll-trigger',
+      start: 'bottom bottom',
+      end: '+=50%',
+      animation: uncover,
+      scrub: true,
+    })
+
+    // ScrollTrigger for footer section 1 animation
+    gsap.to('.page-padding', {
+      yPercent: -250,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '.scroll-trigger',
+        start: 'bottom',
+        end: '+=70%',
+        scrub: true,
+      },
+    })
+  },
+}
+</script>
+
+<style scoped>
 .footer-section {
   background-color: #fff;
   color: #333;
@@ -62,10 +99,10 @@ export default {}
 }
 
 .spacer-xxhuge-top {
-  padding-top: 3rem;
+  padding-top: 0rem;
 }
 .spacer-xxhuge-bot {
-  padding-top: 5rem;
+  padding-top: 4rem;
 }
 
 .footer-wrapper {
