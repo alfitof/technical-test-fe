@@ -6,6 +6,7 @@ import Footer from './components/Footer.vue'
 import VacanciesSection from './components/VacanciesSection.vue'
 import ExperienceSection from './components/ExperienceSection.vue'
 import HorizontalSlider from './components/HorizontalSlider.vue'
+import MemberSection from './components/MemberSection.vue'
 </script>
 
 <template>
@@ -13,6 +14,7 @@ import HorizontalSlider from './components/HorizontalSlider.vue'
     <Header />
     <HeroSection />
     <AboutSection />
+    <MemberSection />
     <HorizontalSlider />
     <ExperienceSection />
     <VacanciesSection />

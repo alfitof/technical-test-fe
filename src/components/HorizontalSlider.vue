@@ -105,4 +105,10 @@ export default {
   height: auto;
   object-fit: cover;
 }
+
+@media screen and (max-width: 1024px) {
+  .panel.red .content {
+    font-size: 1.2rem;
+  }
+}
 </style>
