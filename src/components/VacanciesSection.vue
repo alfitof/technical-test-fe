@@ -70,7 +70,7 @@ export default {}
   </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 .section-vacancy {
   background: #ecf5ff;
   padding-left: 6.5rem;

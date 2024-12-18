@@ -5,6 +5,7 @@ import AboutSection from './components/AboutSection.vue'
 import Footer from './components/Footer.vue'
 import VacanciesSection from './components/VacanciesSection.vue'
 import ExperienceSection from './components/ExperienceSection.vue'
+import HorizontalSlider from './components/HorizontalSlider.vue'
 </script>
 
 <template>
@@ -12,6 +13,7 @@ import ExperienceSection from './components/ExperienceSection.vue'
     <Header />
     <HeroSection />
     <AboutSection />
+    <HorizontalSlider />
     <ExperienceSection />
     <VacanciesSection />
     <Footer />
