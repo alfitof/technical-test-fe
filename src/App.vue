@@ -10,7 +10,7 @@ import HeroSection from './components/HeroSection.vue'
   </div>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .wrapper {
   border-radius: 0.5rem;
   flex-flow: column;

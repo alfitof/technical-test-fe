@@ -1,23 +1,94 @@
+<script>
+import { gsap } from 'gsap'
+
+export default {
+  name: 'HeaderComponent',
+  data() {
+    return {
+      isMenuActive: false,
+      isScrolled: false,
+      isDropdownActive: false,
+      menuItems: [
+        'Home',
+        'Product development',
+        'Mechanical engineering',
+        'Vacancies',
+        'About Trios',
+        'Contact',
+      ],
+    }
+  },
+  methods: {
+    toggleMenu() {
+      this.isMenuActive = !this.isMenuActive
+      if (this.isMenuActive) {
+        this.animateMenuIn()
+      }
+    },
+    animateMenuIn() {
+      gsap.fromTo(
+        this.$refs.navItems,
+        { opacity: 0, y: -20 },
+        { opacity: 1, y: 0, stagger: 0.1, duration: 0.5, ease: 'power2.out' },
+      )
+    },
+    handleScroll() {
+      this.isScrolled = window.scrollY > 50
+    },
+    toggleDropdown() {
+      this.isDropdownActive = !this.isDropdownActive
+    },
+  },
+  mounted() {
+    window.addEventListener('scroll', this.handleScroll)
+  },
+  beforeDestroy() {
+    window.removeEventListener('scroll', this.handleScroll)
+  },
+}
+</script>
+
 <template>
-  <header class="header">
-    <img src="../assets/images/download (3).svg" alt="Logo" />
+  <header class="header" :class="{ scrolled: isScrolled }">
+    <img
+      src="../assets/images/download (3).svg"
+      alt="Logo"
+      class="logo"
+      :class="{ scrolled: isScrolled }"
+    />
     <nav class="navigation" :class="{ 'nav-active': isMenuActive }">
-      <a href="#" class="nav-item">Home</a>
-      <a href="#" class="nav-item">Product development</a>
-      <a href="#" class="nav-item">Mechanical engineering</a>
-      <a href="#" class="nav-item">Vacancies</a>
-      <a href="#" class="nav-item">About Trios</a>
-      <a href="#" class="nav-item">Contact</a>
-      <div class="nav-item locales-button">
+      <a
+        v-for="(menu, index) in menuItems"
+        :key="index"
+        ref="navItems"
+        href="#"
+        class="nav-item hover-item"
+        :class="{ scrolled: isScrolled }"
+      >
+        {{ menu }}
+      </a>
+      <div class="locales-button" @click="toggleDropdown">
         <img src="../assets/images/6744812e2d44005ba3ac9d47_Engels.svg" />
         <img src="../assets/images/download (5).svg" />
+        <div v-if="isDropdownActive" class="dropdown-content">
+          <div class="dropdown-item">
+            <img src="../assets/images/6744812e2d44005ba3ac9d47_Engels.svg" />
+            <p>English</p>
+          </div>
+          <div class="dropdown-item">
+            <img src="../assets/images/674480fad4fc2c1bef58e509_Nederlands.svg" />
+            <p>Nederlands</p>
+          </div>
+        </div>
+      </div>
+      <div class="locales-button-mobile">
+        <img src="../assets/images/6744812e2d44005ba3ac9d47_Engels.svg" alt="English" />
+        <img src="../assets/images/674480fad4fc2c1bef58e509_Nederlands.svg" alt="Nederlands" />
       </div>
     </nav>
 
-    <!-- Overlay for background blur -->
     <div v-if="isMenuActive" class="overlay"></div>
 
-    <!-- Hamburger menu -->
     <div class="hamburger" @click="toggleMenu" :class="{ active: isMenuActive }">
       <span></span>
       <span></span>
@@ -26,25 +97,9 @@
   </header>
 </template>
 
-<script>
-export default {
-  name: 'HeaderComponent',
-  data() {
-    return {
-      isMenuActive: false,
-    }
-  },
-  methods: {
-    toggleMenu() {
-      this.isMenuActive = !this.isMenuActive
-    },
-  },
-}
-</script>
-
 <style lang="scss" scoped>
 .header {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -57,7 +112,12 @@ export default {
   background: transparent;
   color: white;
   box-sizing: border-box;
-  transition: padding 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+
+  &.scrolled {
+    background-color: white;
+    padding: 1.2rem 6rem;
+  }
 
   .navigation {
     display: flex;
@@ -65,6 +125,7 @@ export default {
     transition: transform 0.3s ease-in-out;
 
     .nav-item {
+      position: relative;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -74,20 +135,112 @@ export default {
       font-weight: 500;
       font-size: 16px;
       padding: 0.57rem 1.19rem;
-      transition: color 0.3s;
       text-align: center;
       border-radius: 0.5rem;
+      transition:
+        color 0.3s,
+        background-color 0.3s;
+      z-index: 10;
 
-      &:hover {
-        color: #e74c3c;
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #dee7f4;
+        transform: scaleY(0);
+        transform-origin: bottom;
+        transition: transform 0.3s ease-in-out;
+        border-radius: 0.5rem;
+        z-index: -1;
+      }
+
+      &:hover::after {
+        transform: scaleY(1);
+      }
+
+      &.scrolled {
+        background-color: #dee7f4;
       }
     }
 
+    .hover-item {
+      overflow: hidden;
+    }
+
     .locales-button {
+      position: relative;
       display: flex;
+      justify-content: center;
       align-items: center;
-      gap: 0.1rem;
+      text-decoration: none;
       cursor: pointer;
+      background-color: white;
+      font-weight: 500;
+      font-size: 16px;
+      padding: 0.57rem 0.8rem 0.57rem 1.19rem;
+      text-align: center;
+      border-radius: 0.5rem;
+
+      img {
+        margin-left: 0.1rem;
+      }
+
+      .dropdown-content {
+        display: block;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: white;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        width: 140px;
+        border-radius: 8px;
+        z-index: 20;
+        padding: 10px 0;
+        margin-top: 5px;
+      }
+
+      .dropdown-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 8px 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+
+        &:hover {
+          background-color: #dee7f4;
+        }
+
+        img {
+          width: 20px;
+          height: 20px;
+        }
+
+        p {
+          color: #2b3467;
+          margin: 0;
+          font-size: 14px;
+          font-weight: 500;
+        }
+      }
+    }
+
+    .locales-button-mobile {
+      display: none;
+      align-items: center;
+
+      img {
+        width: 25px;
+        height: 25px;
+        cursor: pointer;
+      }
+
+      img:nth-child(1) {
+        margin-right: 10px;
+      }
     }
   }
 
@@ -135,7 +288,7 @@ export default {
 
   @media (max-width: 1024px) {
     .navigation {
-      display: none; /* Hide desktop navigation for mobile */
+      display: none;
       position: fixed;
       top: 50%;
       left: 50%;
@@ -145,12 +298,20 @@ export default {
       justify-content: center;
       align-items: center;
       padding: 2rem;
-      width: 70%; /* Set the width to make it wider */
-      max-width: 400px; /* Optional: adjust the maximum width */
+      width: 70%;
+      max-width: 400px;
       border-radius: 1rem;
       z-index: 20;
       opacity: 0;
       transition: opacity 0.3s ease-in-out;
+
+      .locales-button {
+        display: none;
+      }
+      .locales-button-mobile {
+        display: flex;
+        margin-top: 10px;
+      }
     }
 
     .navigation.nav-active {
@@ -162,16 +323,19 @@ export default {
       display: flex;
     }
 
-    /* Overlay for background blur */
     .overlay {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0, 0, 0, 0.5); /* Slight black overlay */
-      backdrop-filter: blur(5px); /* Apply the blur effect */
+      background-color: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(5px);
       z-index: 10;
+    }
+
+    .nav-item {
+      width: 100%;
     }
   }
 }
@@ -179,6 +343,15 @@ export default {
 @media (max-width: 1024px) {
   .header {
     padding: 2.2rem;
+    &.scrolled {
+      background-color: transparent;
+      padding: 2.2rem;
+    }
+    .logo {
+      &.scrolled {
+        visibility: hidden;
+      }
+    }
   }
 }
 </style>

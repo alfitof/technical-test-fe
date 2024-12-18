@@ -1,3 +1,9 @@
+<script>
+export default {
+  name: 'HeroSection',
+}
+</script>
+
 <template>
   <section class="hero">
     <div class="gradient-logo"></div>
@@ -7,12 +13,6 @@
     </div>
   </section>
 </template>
-
-<script>
-export default {
-  name: 'HeroSection',
-}
-</script>
 
 <style lang="scss" scoped>
 .hero {
