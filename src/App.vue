@@ -2,6 +2,7 @@
 import Header from './components/Header.vue'
 import HeroSection from './components/HeroSection.vue'
 import AboutSection from './components/AboutSection.vue'
+import Footer from './components/Footer.vue'
 </script>
 
 <template>
@@ -9,6 +10,7 @@ import AboutSection from './components/AboutSection.vue'
     <Header />
     <HeroSection />
     <AboutSection />
+    <Footer />
   </div>
 </template>
 
