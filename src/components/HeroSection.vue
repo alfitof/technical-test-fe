@@ -1,7 +1,5 @@
 <script>
-export default {
-  name: 'HeroSection',
-}
+export default {}
 </script>
 
 <template>

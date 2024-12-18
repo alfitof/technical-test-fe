@@ -1,12 +1,14 @@
 <script setup>
 import Header from './components/Header.vue'
 import HeroSection from './components/HeroSection.vue'
+import AboutSection from './components/AboutSection.vue'
 </script>
 
 <template>
   <div class="wrapper">
     <Header />
     <HeroSection />
+    <AboutSection />
   </div>
 </template>
 
