@@ -1,3 +1,7 @@
+<script>
+export default {}
+</script>
+
 <template>
   <div>
     <div class="section-vacancy scroll-trigger">
@@ -65,10 +69,6 @@
     </div>
   </div>
 </template>
-
-<script>
-export default {}
-</script>
 
 <style scoped>
 .section-vacancy {

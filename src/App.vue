@@ -4,6 +4,7 @@ import HeroSection from './components/HeroSection.vue'
 import AboutSection from './components/AboutSection.vue'
 import Footer from './components/Footer.vue'
 import VacanciesSection from './components/VacanciesSection.vue'
+import ExperienceSection from './components/ExperienceSection.vue'
 </script>
 
 <template>
@@ -11,6 +12,7 @@ import VacanciesSection from './components/VacanciesSection.vue'
     <Header />
     <HeroSection />
     <AboutSection />
+    <ExperienceSection />
     <VacanciesSection />
     <Footer />
   </div>
