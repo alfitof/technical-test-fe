@@ -7,6 +7,7 @@ import VacanciesSection from './components/VacanciesSection.vue'
 import ExperienceSection from './components/ExperienceSection.vue'
 import HorizontalSlider from './components/HorizontalSlider.vue'
 import MemberSection from './components/MemberSection.vue'
+import Vacancies1Section from './components/Vacancies1Section.vue'
 </script>
 
 <template>
@@ -17,6 +18,7 @@ import MemberSection from './components/MemberSection.vue'
     <MemberSection />
     <HorizontalSlider />
     <ExperienceSection />
+    <Vacancies1Section />
     <VacanciesSection />
     <Footer />
   </div>
