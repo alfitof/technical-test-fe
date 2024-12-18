@@ -8,6 +8,7 @@ import ExperienceSection from './components/ExperienceSection.vue'
 import HorizontalSlider from './components/HorizontalSlider.vue'
 import MemberSection from './components/MemberSection.vue'
 import Vacancies1Section from './components/Vacancies1Section.vue'
+import GalleryGridSection from './components/GalleryGridSection.vue'
 </script>
 
 <template>
@@ -15,6 +16,7 @@ import Vacancies1Section from './components/Vacancies1Section.vue'
     <Header />
     <HeroSection />
     <AboutSection />
+    <GalleryGridSection />
     <MemberSection />
     <HorizontalSlider />
     <ExperienceSection />

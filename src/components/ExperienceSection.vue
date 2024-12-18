@@ -34,8 +34,8 @@ export default {
             y: 0,
             scrollTrigger: {
               trigger: el,
-              start: 'top 90%',
-              end: 'top 80%',
+              start: 'top 80%',
+              end: 'top 60%',
               scrub: 1,
             },
           },
