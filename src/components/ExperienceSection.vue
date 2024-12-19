@@ -1,13 +1,16 @@
 <script>
 import { gsap } from 'gsap'
+import ScrollTrigger from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
 
 export default {
   mounted() {
-    this.incrementNumbers()
     this.scrollFadeEffect()
+    this.incrementNumbersOnScroll()
   },
   methods: {
-    incrementNumbers() {
+    incrementNumbersOnScroll() {
       const numbers = [
         { elementId: 'years-experience', value: 30 },
         { elementId: 'projects', value: 50 },
@@ -15,12 +18,23 @@ export default {
       ]
 
       numbers.forEach(({ elementId, value }) => {
-        gsap.to(`#${elementId}`, {
-          innerHTML: value,
-          duration: 5,
-          ease: 'none',
-          snap: { innerHTML: 1 },
-        })
+        gsap.fromTo(
+          `#${elementId}`,
+          { innerHTML: 0 },
+          {
+            innerHTML: value,
+            duration: 30,
+            ease: 'none',
+            snap: { innerHTML: 1 },
+            scrollTrigger: {
+              trigger: `#${elementId}`,
+              start: 'top 80%',
+              end: 'top 60%',
+              scrub: 1,
+              once: true,
+            },
+          },
+        )
       })
     },
 

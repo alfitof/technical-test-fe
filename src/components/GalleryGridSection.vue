@@ -24,7 +24,6 @@ export default {
       })
     })
 
-    // Scroll-triggered animation for each row
     gsap.utils.toArray('.row').forEach((row, index) => {
       gsap.from(row, {
         y: 50,
@@ -55,7 +54,6 @@ export default {
     </div>
   </div>
   <div class="gallery">
-    <!-- Row 1 -->
     <div class="row">
       <div class="item hover-text">
         Prototype +
@@ -79,7 +77,6 @@ export default {
       </div>
     </div>
 
-    <!-- Row 2 -->
     <div class="row">
       <div class="item image">
         <img
@@ -99,7 +96,6 @@ export default {
       </div>
     </div>
 
-    <!-- Row 3 -->
     <div class="row">
       <div class="item image">
         <img
